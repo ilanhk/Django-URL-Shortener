@@ -1,0 +1,12 @@
+  
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <form method="POST" action="/createURL/">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- to make the form in <p> tags-->
+        <center><button type="submit" class="btn btn-success">Create URL</button></center>
+    </form>
+</div>
+{% endblock content %}
