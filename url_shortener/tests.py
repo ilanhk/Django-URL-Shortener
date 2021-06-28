@@ -4,11 +4,6 @@ from .models import ShortURL
 from .views import generate_shortURL, redirect, home
 from datetime import datetime
 
-# Maybe try doing just a test.py file in this instruction: https://docs.djangoproject.com/en/3.2/topics/testing/overview/
-
-# try this link to help: https://www.youtube.com/watch?v=qfkFhcxd2XI&t=1903s&ab_channel=ArunRavindranArunRocks
-#  or this: https://stackoverflow.com/questions/43501561/how-to-test-views-that-use-post-request-in-django
-
 
 url = "https://www.linkedin.com/in/ilan-lieberman-9a1043132/"
 time = datetime.now()
@@ -54,6 +49,7 @@ class TestURLShortener(TestCase):
 
         self.assertEquals(str(response), url)
 
+
     # Test for non-existing short URL
     def test_for_non_existing_shortURL(self):
         """
@@ -61,7 +57,11 @@ class TestURLShortener(TestCase):
         """
 
         random_short_url = 'FGHDSB'
+        # A short url that is definitely not in the database
 
         response = self.client.get(reverse("redirect", kwargs={"url": random_short_url}))
 
         self.assertTemplateUsed(response, 'redirect.html')
+        #This test should fail. It should lead to the 404page not the redirect page because the short url is non-existent
+
+
